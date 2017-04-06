@@ -1,0 +1,135 @@
+<html>
+<head>
+  <title>Vacation Request</title>
+
+  <script type="text/javascript">
+
+  var items = new Array(
+    "Employee Name: ", "x",
+    "Start:         ", "x",
+    "Return:        ", "x",  
+    "Days Taken:    ", "x"  
+   );
+	
+  function getRadioValue(theObj) {
+    for(var i=0; i<theObj.length; i++) {
+       if (theObj[i].checked) { 
+          return theObj[i].value + ",";
+	}
+    }
+
+    return "";
+  }
+
+  function getCheckValue(theObj) {
+    if (theObj.checked) { 
+       return "G" + ",";
+    }
+    
+    return "P" + ",";
+  }
+
+
+  // fills an array with players from the form
+  function showItems(){
+    var f = document.forms.f1;
+    var tmp = "";
+
+    items[1] = f.empName.value;
+    items[3] = f.vacStart.value;
+    items[5] = f.vacEnd.value;
+    items[7] = f.vacDays.value;
+
+    tmp = "";
+    for( var i=0; i < items.length; i += 2 ){
+	tmp += items[i] + "\t" + items[i+1] + "\n";
+    }
+    f.txtarea1.value = tmp;
+    //popup(a);
+  }
+
+  // fills a page with items from the form
+  function showPage(){
+    var f = document.forms.f1;
+    var tmp = "";
+
+      // create the popup window
+      var pw =  
+	 window.open("", "",
+          "top=40,left=30,width=450,height=220,menubar=1");
+   
+      // open the popup window HTML document
+      pw.document.open();
+      // write content in the popup window
+      pw.document.write("<title>Vacation Plan</title>");
+      pw.document.write("<html><head></head><body bgcolor='#d0d0d0'>");
+      pw.document.write("<h3>Vacation Request</h3>");
+
+      pw.document.write("<table border='1' cellspacing='1'>");
+      for( var i=0; i < items.length; i += 2 ){
+        pw.document.write("<tr><td>" + 
+	items[i] + "</td><td>" + items[i+1] + "</td></tr>" );
+      }
+
+      pw.document.write("</table></hr></body></html>");
+   
+      // remember to finally close the HTML document
+      pw.document.close();                             
+
+  }
+
+  function doInit(){
+
+  }
+  </script>
+
+</head>
+
+<!---------------------------------------------------------------->
+ 
+<body bgcolor='#d0d0d0' onload = "doInit()">
+<form id="f1" method="post" action="">
+
+<h3> Vacation Request Form </h3>
+
+<table border="1">
+
+<tr>
+ <td>&nbsp;Employee Name:</td>
+ <td><input type="text" name="empName" size="40"/></td>
+</tr>
+
+<tr>
+ <td>&nbsp;Vacation Start:<br>&nbsp;yy/mm/dd</td>
+ <td><input type="text" name="vacStart" size="40"/></td>
+</tr>
+
+<tr>
+ <td>&nbsp;Return To Work: <br>&nbsp;yy/mm/dd</td>
+ <td><input type="text" name="vacEnd" size="40"/></td>
+</tr>
+
+<tr>
+ <td>&nbsp;Total Vacation Days:</td>
+ <td><input type="text" name="vacDays" size="40"/></td>
+</tr>
+
+</table>
+
+<p>
+<input type="button" value="Clear Form" onclick="document.forms.f1.reset()"/>
+<input type="button" value="Test Form" onclick="showItems()"/>
+<input type="button" value="Result" onclick="showPage()"/>
+</p>
+
+<p><textarea id="txtarea1" rows="6" cols="46"></textarea></p>
+<hr>
+
+Javascript security prevents writing to a file or sending email<br>
+from a form. One must save the result page in a file from the popup <br>
+window, then open the file and do a 'send page' operation.
+
+</form>
+</body>
+</html>
+

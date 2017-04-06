@@ -1,0 +1,278 @@
+<html>
+<!------------------------------------------------------------->
+<head>
+  <title> Problem Report Form (html output version)</title>
+  <meta http-equiv="Content-Type" content="text/html">
+  <meta name="author" content="Bob McIsaac">
+  <meta name="Keywords" content="report script">
+  <meta name="Description" content="2005-aug-14 ">
+  <link rel="stylesheet" type="text/css" href="form.css" >
+  
+<script type="text/javascript">
+
+var dateTag = "";
+
+// shows the form data in a window
+
+<!------------------------------------------------------------->
+function makeDate(){
+   var d=new Date();
+   dateTag += d.getFullYear() + "/" + d.getMonth() + "/" + 
+      d.getDate() ;
+   
+}
+
+<!------------------------------------------------------------->
+function showHTML(){
+   var d=new Date();
+   var f = document.forms.f1;
+   var tmp = "";
+   
+   dateTag = "<tr><th> Problem Date: </th><td>";
+   makeDate();
+   tmp= "<html><body><br>Problem Report<br>\n" +
+      "<table border='1' width='80%'cellpadding='8'>\n" +
+      "<tr><th> Serial Number: </th>" +
+      "<td> " + f.serialNum.value + " </td></tr>\n" +
+      "<tr><th> Product: </th>" + 
+      "<td> " + f.productNum.value + " </td></tr>\n" +
+      "<tr><th> Reporter: </th>" + 
+      "<td> " + f.reporter.value + " </td></tr>\n" +
+      dateTag + " </td></tr>\n" +
+      "<tr><th>Summary:</th>" + 
+      "<td>" + f.summary.value + "</td></tr>\n" +
+      "<tr><th colspan='2'> Description of Problem:</th></tr>\n" +
+      "<tr><td colspan='2'>" + f.txtarea1.value + "</td></tr>\n" +
+      "</table></body></html>\n";
+   
+   f.txtarea2.value = tmp;
+   //popup(a);
+}
+
+<!------------------------------------------------------------->
+function doInit(){
+   var tmp = "problem report script version 2005-aug-14\n";
+   var f = document.forms.f1;
+   f.productNum.value = "";
+
+   tmp += navigator.appName + "\n";
+   
+   tmp += "Browser version: ";
+   tmp += navigator.appVersion + "\n";
+   
+   tmp += "Code: ";
+   tmp += navigator.appCodeName + "\n";
+   
+   tmp += "Platform: ";
+   tmp += navigator.platform + "\n";
+   
+   tmp += "Cookies enabled: ";
+   tmp += navigator.cookieEnabled + "\n";
+   
+   tmp += "Browser's user agent header: ";
+   tmp += navigator.userAgent + "\n";
+   f.txtarea2.value = tmp;
+}
+
+<!------------------------------------------------------------->
+function showPlain(){
+   var f = document.forms.f1;
+   var tmp = "--------Simple Problem Report--------\n";
+   var testerTag = "Reporter:     \t";
+   var snumTag   = "Serial :      \t";
+   var prodTag   = "Product:      \t";
+   var summTag   = "Summary:      \t";
+   var descTag   = "Description:  \t";
+   dateTag       = "Problem Date: \t";
+   makeDate();
+   tmp += dateTag + "\n";	
+   tmp += testerTag + f.reporter.value + "\n";
+   tmp += snumTag   + f.serialNum.value + "\n";
+   tmp += prodTag   + f.productNum.value + "\n";
+   tmp += summTag   + f.summary.value + "\n";
+   tmp += descTag + "\n\n" + f.txtarea1.value + "\n";
+   
+   f.txtarea2.value = tmp;
+   //popup(a);
+}
+
+<!------------------------------------------------------------->
+function showWiki(){
+   var f = document.forms.f1;
+   var tmp = "Wiki Problem Report\n";
+   
+   var snumTag   = "*Serial Number:* ";
+   var prodTag   = "*Product:* ";
+   var testerTag = "*Reporter:* ";
+   var descTag   = "*Description of Problem:* ";
+   
+   tmp += snumTag   + f.serialNum.value + "\n\n";
+   tmp += prodTag   + f.productNum.value + "\n\n"
+      tmp += testerTag + f.reporter.value + "\n\n";
+   dateTag = "*Problem Date:* ";
+   makeDate();
+   tmp += dateTag + "\n\n";	
+   tmp += descTag + "\n\n" + f.txtarea1.value + "\n";
+   
+   f.txtarea2.value = tmp;
+   //popup(a);
+}
+
+<!------------------------------------------------------------->
+function doTest(){
+   var tmp = "Browser: ";
+   var f = document.forms.f1;
+   f.productNum.value = "J40 Laser";
+   f.serialNum.value = "123";
+   f.reporter.value = "bobmc";
+   f.summary.value = "J40 Laser won't fire";
+   f.txtarea1.value = "OI Laser status say's ok but the laser won't fire";
+   f.txtarea2.value = "click the Plain Button";	
+}
+
+</script>
+
+</head>
+
+<!---------------------------------------------------------------->
+<body bgcolor='#d0d0d0' onload = "doInit()">
+
+<form id="f1" method="post" action="">
+
+<b><a name="top">Problem Report Form Version 1.0</a></b>
+
+<!---------------------------------------------------------------->
+<table style="text-align:left;" border="1" cols="4">
+
+<!---------------------------------------------------------------->
+<tr>
+  <td>&nbsp;<a href="#product"> Product: </a> </td>
+  <td><input type="text" name="productNum" /></td>
+  <td>&nbsp;<a href="#serial" title="Hello World"
+	> Serial: </a></td>
+  <td><input type="text" name="serialNum" /></td>
+</tr>
+
+<!---------------------------------------------------------------->
+<tr> 
+  <td>&nbsp;<a href="#reporter" title="Use email alias"
+	> Reporter: </a></td>
+  <td colspan="3" ><input type="text" name="reporter" /></td>
+</tr>
+
+
+<!---------------------------------------------------------------->
+<tr><td >
+  &nbsp;<a href="#summ">Summary of Problem:</a></td>
+  <td colspan="3" ><input type="text" name="summary" size="50" /></td>
+</tr>
+
+<!---------------------------------------------------------------->
+<tr><td colspan="4" >
+  &nbsp;<a href="#desc">Description of Problem:</a></td></tr>
+
+<tr>
+<td colspan="4">
+<textarea id="txtarea1" rows="4" cols="60"></textarea>
+</td>
+</tr>
+
+<tr><td colspan="4"><hr></td></tr>
+
+<!---------------------------------------------------------------->
+</table>
+
+<p>
+<input type="button" value="Clear" onclick="document.forms.f1.reset()"/>
+<input type="button" value="Test " onclick="doTest()"/>
+<input type="button" value="HTML " onclick="showHTML()"/>
+<input type="button" value="Plain" onclick="showPlain()"/>
+<input type="button" value="Wiki"  onclick="showWiki()"/>
+<a href="#result">&nbsp;&nbsp;&nbsp;Notes</a>
+</p>
+
+<textarea id="txtarea2" rows="15" cols="60"></textarea>
+
+<p>External Links: 
+ Problem Database </a>
+|<a href="http://www.w3schools.com/html/default.asp"
+   title="HTML and JavaScript"> HTML/Script Guides </a> | </p>
+
+</form>
+
+<hr width="90%">
+<blockquote>
+
+Describe your problem or issue, then click a button to see the
+formatted data in the Result Window. Click "select all" and
+copy. Finally, paste into an email to be sent to the engineering
+coordinator. Alternatively, click the <u>Problem Database</u> special
+link and paste into the product description window.
+
+<p>Three different format buttons are provided:- HTML, Plain, and
+Wiki.  HTML looks neater if it is saved in a file, such as "test.html"
+and reloaded. Plain text will work for any situation including
+Bugzilla forms. Wiki is simple and useful but requires
+demonstration until the concept is better understoud.</p>
+
+<p>One must copy the data from the <a name="result"> <b>result
+window</b> </a> because of Javascipt security. It prevents writing
+files or sending email directly from the form when no web server is
+present. One can print this form, but the data will not appear on the
+printout.</p>
+
+<p>The "Clear" button erases all input data. Optionally use it to
+clear the form before you enter any information. Once you have entered
+your data, you need not clear the form since the other buttons cause
+the result window to be refreshed with each format.
+</p> </blockquote>
+
+<a name="summ"><b>Summary:</b></a><a href="#top">&nbsp;Top</a>
+
+<blockquote>Start with
+a one-line summary like "Component does not work".  Examples follow:-
+<ul>
+<li>Laser does not fire properly</li>
+<li>Alert xxx document is confusing</li>
+<li>Sensor head cable is broken</li>
+<li>Optical signal is degraded</li>
+<li>ALTM time is wrong</li>
+</ul>
+</blockquote>
+
+<a name="desc"><b>Description:</b></a><a href="#top">&nbsp;Top</a> 
+<blockquote> 
+
+Describe the problem or name a document containing report logs and
+other related material. 
+
+Typing hints: Use the TAB or shift-TAB to navigate the form. The 
+text window is 60 columns. Press ENTER when typing near the right
+edge so that the result will appear in block format.
+</blockquote>
+
+<a name="product"><b>Product Number: </b></a><a href="#top">&nbsp;Top</a>
+<blockquote>
+
+Enter product number, a project number, or perhaps, a customer
+number. If that is not known, enter "NA". </blockquote>
+
+<a name="serial"> <b>Serial Number: </b></a><a href="#top">&nbsp;Top</a>
+<blockquote> 
+
+Enter a number or token which further identifies the product or
+project.  Perhaps this could be a ticket number from another reporting
+system. If the number does not matter, enter "NA". 
+</blockquote>
+
+<a name="reporter"> <b>Reporter: </b></a><a href="#top">&nbsp;Top</a>
+
+<blockquote>Enter the email alias of the person reporting the problem.
+For example, "bobmc". Please do not use initials or arbitrary formats.
+</blockquote>
+
+<br>
+<a href="#top"> Back to top of form </a>
+</body>
+</html>
+

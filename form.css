@@ -1,0 +1,132 @@
+/* form.css 05-aug-10 */
+
+H1,H2,H3,H4,H5{ 
+        /* color:cyan; */
+        text-align: left; 
+	font-family: Arial, sans-serif; 
+	font-size: 20pt;
+	/* font-style:italic; */
+	text-decoration: none 
+}
+
+BODY {
+  background-color: wheat;
+    //margin-left: 22ex; 
+    //padding-right:1em; 
+    //border-right: 1px solid #999; 
+
+}
+  div.sidebar { position: absolute; left: 0; width: 20ex; top: 0; }
+
+#titleBox{
+  background-color: #9999cc;
+  border-style: groove;
+  border-color: grey;
+	font-color: cyan;
+  padding: 4px;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 702px;
+  height: 50px;
+}
+
+
+#linkTitle {
+     font-face: Arial ;
+     font-size: 14pt ;
+    /* background-color: #9999cc;*/
+} 
+
+
+#linkBox{
+/*  background-color: #e7e7e7;
+  border: 2px white groove;
+  padding: 4px;
+  left: 2px; */
+  /* position: absolute;
+  top: 1px; */
+/*  width: 170px; */
+	
+}
+
+
+#linkGroup{
+  background-color: #e7e7e7;
+  border: 2px white solid;
+  color: slate;
+  padding: 4px;
+  left: 2px;
+  /* position: absolute;
+  top: 1px; */
+  width: 170px;
+	
+}
+
+#leftPanel{
+  background-color: #9999cc;
+  /* background-color: #e7e7e7; */
+  border-style: groove;
+  border-color: grey;
+  padding: 8px;
+  position: absolute;
+  left: 1px;
+  top: 64px;
+  width: 180px;
+  /*height: 600px;*/
+}
+
+#rightPanel{
+  background-color: #ccccff;
+  border-style: none;
+  /* border-right-style: none;  border-left-style: none;
+  border-color: grey;
+	*/
+  padding: 8px;
+  position: absolute;
+  left: 220px;
+  top: 65px;
+  width: 500px;
+  /*height: 600px;*/
+}
+
+a:visited {
+color:blue;
+background:transparent;
+}
+
+a:hover {
+color:white;
+background:#669999;
+}
+
+a:active {
+color:cyan;
+background:transparent;
+}
+
+table.user { 
+   border-style:solid; 
+   border-width:1;
+   border-color:grey;
+   background-color:lightgrey;
+   }
+table.user tr td { 
+   border-style:solid; 
+   //border-width:thin;
+   border-color:grey; 
+   top:1px;
+   left:1px;
+   right:1px;
+   bottom:1px;
+   padding:5px; 
+   }
+
+img.logo { 
+  float: right; 
+  clear: right; 
+  border-style:none; 
+}
+
+pre { font-family: monospace; }
+
